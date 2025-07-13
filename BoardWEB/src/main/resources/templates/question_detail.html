@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html layout:decorate = "~{layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment = "content" class = "container">
+	<div class = "border-bottom my-3">
+		<h3>상세보기</h3>
+	</div>
+	<div class = "card">
+		<div class = "card-body">
+			<h4 th:text = "${question.subject}"></h4>
+		</div>
+		<div class = "card-body">
+			<h5 th:text = "${question.content}"></h5>
+		</div>
+	</div>
+	
+	<h5 th:text = "|${#lists.size(question.answerList)}개의 답변이 달렸습니다.|"></h5>
+	
+	<div  >
+		<ul class = "card" th:each = "answer : ${question.answerList}">
+			<li class = "card-body" th:text = "${answer.content}"></li>
+		</ul>	
+	</div>
+	<form th:action = "@{|/answer/create/${question.id}|}" method = "post" th:object = "${answerForm}">
+		<div th:replace = "~{form_error :: formErrorsFragment}"></div>
+		<textarea rows="10" class = "form-control" th:field = "*{content}"></textarea>
+		<button type = "submit" class = "btn btn-primary">답글 달기</button>
+	</form>
+	<a th:href = "@{/}">목록</a>
+</div>
+</body>
+</html>

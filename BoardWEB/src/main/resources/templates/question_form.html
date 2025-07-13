@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html layout:decorate = "~{layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment = "content" class = "container my-3">
+	<div>
+		<h3>새글 작성</h3>
+	</div>
+	<div>
+		<form th:action = "@{/question/create}" method = "post" th:object = "${questionForm}">
+			<div th:replace = "~{form_error::formErrorsFragment}"></div>
+			<label class = "form-label" for = "subject">제목</label>
+			<input class = "form-control" type = "text" th:field = "*{subject}">
+			
+			<label class = "form-label" for="content">내용</label>
+			<textarea class = "form-control" rows="10" th:filed = "*{content}"></textarea>
+			
+			<input type = "submit" value = "등록하기" class = "btn btn-primary">
+		</form>
+	</div>
+
+</div>
+
+
+</body>
+</html>

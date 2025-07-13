@@ -3,8 +3,6 @@ package com.mysite.sbb.question;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.hibernate.annotations.ValueGenerationType;
-
 import com.mysite.sbb.answer.Answer;
 
 import jakarta.persistence.CascadeType;
@@ -26,14 +24,14 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 200)
+	
 	private String subject;
 	
-	@Column(columnDefinition = "TEXT")
+	@Column(columnDefinition = "text")
 	private String content;
 	
-	private LocalDateTime createDate;
+	private LocalDateTime createTime;
 	
-	@OneToMany(mappedBy = "question" , cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;
 }
